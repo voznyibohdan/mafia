@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
 	isGameStarted: false,
 	playersRoles: [],
+	nights: [],
 }
 
 export const gameSlice = createSlice({
@@ -14,8 +15,17 @@ export const gameSlice = createSlice({
 			state.isGameStarted = true;
 		},
 		setPlayersRoles: (state, action) => {
-			state.playersRoles = [...action.payload];
+			state.playersRoles = action.payload.map((role) => {
+				return {
+					id: uuidv4(),
+					role: role,
+					isAlive: true,
+				}
+			});
 		},
+		addNight: (state) => {
+			state.nights.push(1)
+		}
 	},
 });
 

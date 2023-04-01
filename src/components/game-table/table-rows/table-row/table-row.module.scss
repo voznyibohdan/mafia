@@ -1,0 +1,33 @@
+.td {
+	font-weight: 500;
+	background-color: var(--primary);
+	padding: 1.2rem 1.2rem;
+
+	&:first-child {
+		border-radius: .4rem 0 0 .4rem;
+	}
+
+	&:last-child {
+		border-radius: 0 .4rem .4rem 0;
+	}
+
+	&.red {
+	}
+
+	&.black {
+
+
+	}
+}
+
+tr.red {
+	& td {
+		background-color: var(--red-role);
+	}
+}
+
+tr.black {
+	& td {
+		background-color: var(--black-role);
+	}
+}

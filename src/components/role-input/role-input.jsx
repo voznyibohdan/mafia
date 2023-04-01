@@ -8,8 +8,6 @@ const RoleInput = ({ label, disabled }) => {
 	const dispatch = useDispatch();
 
 	const handleChange = (e) => {
-		console.log(e.target.value)
-
 		if (label === 'Мафія') {
 			dispatch(setMafias(Array.from({length: e.target.value}, () => 'Мафія')));
 		}

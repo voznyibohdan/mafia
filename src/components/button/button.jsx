@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from './button.module.scss';
 
-const Button = ({ label, onClick }) => {
+import cn from 'classnames';
+
+const Button = ({ label, onClick, className }) => {
 	return (
-		<button className={classes.button} onClick={onClick}>
+		<button className={cn(classes.button, className)} onClick={onClick}>
 			{label}
 		</button>
 	);

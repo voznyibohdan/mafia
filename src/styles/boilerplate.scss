@@ -11,6 +11,10 @@ html {
 	font-size: 62.5%;
 }
 
+thead, tbody, tr {
+	display: contents;
+}
+
 body {
 	font-family: 'Montserrat', sans-serif;
 
@@ -18,7 +22,7 @@ body {
 	font-weight: 400;
 	line-height: 1.6;
 
-	color: var(--color-primary);
+	//color: var(--color-primary);
 }
 
 button {
@@ -29,7 +33,7 @@ button {
 	width: 100vw;
 	height: 100vh;
 
-	//background-color: var(--background);
+	background-color: var(--background);
 }
 
 .gameButtons {

@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
-import Button from "./components/button/button.jsx";
-import RoleInput from "./components/role-input/role-input.jsx";
-import AdditionalRoles from "./components/additional-roles/additional-roles.jsx";
-import Timer from "./components/timer/timer.jsx";
-import RolesPreviewList from "./components/roles-preview-list/roles-preview-list.jsx";
-import {setGameStarted} from "./store/game.js";
-import {shuffle} from "./utils/shuffleRoles.js";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setGameStarted, setPlayersRoles } from './store/game.js';
+import { shuffle } from './utils/shuffleRoles.js';
+
+import Timer from './components/timer/timer.jsx';
+import Button from './components/button/button.jsx';
+import GameTable from './components/game-table/game-table.jsx';
+import RoleInput from './components/role-input/role-input.jsx';
+import AdditionalRoles from './components/additional-roles/additional-roles.jsx';
+import RolesPreviewList from './components/roles-preview-list/roles-preview-list.jsx';
 
 function App() {
 	const { civilians, mafias, roles } = useSelector((state) => state.roles);
@@ -25,6 +28,7 @@ function App() {
 
 	const handleGameStarted = () => {
 		dispatch(setGameStarted());
+		dispatch(setPlayersRoles(rolesPreviewList));
 
 		setIsInputsDisabled(true);
 	}
@@ -42,7 +46,7 @@ function App() {
 					<>
 						<Timer />
 
-						<div>tablutsia</div>
+						<GameTable />
 					</>
 				) : (
 					<>

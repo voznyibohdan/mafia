@@ -41,7 +41,7 @@ const Timer = () => {
 	return (
 		<div>
 			<div className={classes.timerContainer}>
-				<Button label={timerActive ? 'Пауза' : 'Старт'} onClick={handleStartTimer} />
+				<Button className={classes.button} label={timerActive ? 'Пауза' : 'Старт'} onClick={handleStartTimer} />
 				<div className={cn(classes.timer, {[classes.red]: seconds <= 10})}>{seconds}</div>
 				<TimerIcons reloadTimer={handleRestartTimer} addTime={handleAddAdditionalTime} />
 			</div>

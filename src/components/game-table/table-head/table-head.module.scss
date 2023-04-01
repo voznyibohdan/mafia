@@ -1,0 +1,16 @@
+.th {
+	font-size: 1.3rem;
+	text-align: left;
+	font-weight: 500;
+
+	background-color: var(--primary);
+	padding: .3rem 1.2rem;
+
+	&:first-child {
+		border-radius: .2rem 0 0 .2rem;
+	}
+
+	&:last-child {
+		border-radius: 0 .2rem .2rem 0;
+	}
+}
