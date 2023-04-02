@@ -23,12 +23,27 @@ export const gameSlice = createSlice({
 				}
 			});
 		},
+		killPlayer: (state, action) => {
+			return {
+				...state,
+				playersRoles: state.playersRoles.map(playerRole => {
+					if (playerRole.id === action.payload) {
+						return {
+							...playerRole,
+							isAlive: false
+						}
+					}
+
+					return playerRole;
+				})
+			}
+		},
 		addNight: (state) => {
 			state.nights.push(1)
 		}
 	},
 });
 
-export const { setGameStarted, setPlayersRoles } = gameSlice.actions;
+export const { setGameStarted, setPlayersRoles, killPlayer } = gameSlice.actions;
 
 export default gameSlice.reducer;

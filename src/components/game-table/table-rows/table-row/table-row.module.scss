@@ -11,12 +11,12 @@
 		border-radius: 0 .4rem .4rem 0;
 	}
 
-	&.red {
-	}
+	&.iconContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-	&.black {
-
-
+		cursor: pointer;
 	}
 }
 
@@ -29,5 +29,12 @@ tr.red {
 tr.black {
 	& td {
 		background-color: var(--black-role);
+	}
+}
+
+tr.dead {
+	& td {
+		pointer-events: none;
+		filter: blur(.2rem);
 	}
 }
