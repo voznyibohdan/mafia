@@ -1,12 +1,13 @@
 export function shuffle(array) {
 	const arr = [...array];
-	let currentIndex = arr.length, randomIndex;
 
-	while (currentIndex !== 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
+	arr.sort(() => Math.random() - 0.5);
 
-		[arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+	for (let i = arr.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
 	}
 
 	return arr;
