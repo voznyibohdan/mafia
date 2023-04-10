@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 import TableRow from './table-row/table-row.jsx';
 
 const TableRows = () => {
-	const roles = useSelector((state) => state.game.playersRoles);
+	const players = useSelector((state) => state.game.players);
 
 	return (
 		<tbody>
-		{roles.map((playerRole, index) => (
-			<TableRow key={playerRole.id} number={index + 1} playerRole={playerRole} />
+		{players.map((player, index) => (
+			<TableRow key={player.id} number={index + 1} player={player} />
 		))}
 		</tbody>
 	);

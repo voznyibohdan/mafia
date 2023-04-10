@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
 	isGameStarted: false,
-	playersRoles: [],
+	players: [],
 	nights: [],
+	votingPlayers: [],
 }
 
 export const gameSlice = createSlice({
@@ -15,35 +16,62 @@ export const gameSlice = createSlice({
 			state.isGameStarted = true;
 		},
 		setPlayersRoles: (state, action) => {
-			state.playersRoles = action.payload.map((role) => {
+			state.players = action.payload.map((role) => {
 				return {
 					id: uuidv4(),
 					role: role,
 					isAlive: true,
+					warnings: 0,
 				}
 			});
 		},
 		killPlayer: (state, action) => {
-			return {
-				...state,
-				playersRoles: state.playersRoles.map(playerRole => {
-					if (playerRole.id === action.payload) {
-						return {
-							...playerRole,
-							isAlive: false
-						}
+			state.players = state.players.map(player => {
+				if (player.id === action.payload) {
+					return {
+						...player,
+						isAlive: false
 					}
+				}
 
-					return playerRole;
-				})
-			}
+				return player;
+			});
+		},
+		giveWarningToPlayer: (state, action) => {
+			state.players = state.players.map(player => {
+				if (player.id === action.payload) {
+					return {
+						...player,
+						warnings: player.warnings === 4 ? 0 : player.warnings + 1
+					}
+				}
+
+				return player;
+			});
 		},
 		addNight: (state) => {
 			state.nights.push(1)
+		},
+		putPlayerToVoting: (state, action) => {
+			if (state.votingPlayers.includes(action.payload)) {
+				return;
+			}
+
+			state.votingPlayers.push(action.payload);
+		},
+		clearVotingList: (state) => {
+			state.votingPlayers = [];
 		}
 	},
 });
 
-export const { setGameStarted, setPlayersRoles, killPlayer } = gameSlice.actions;
+export const {
+	setGameStarted,
+	setPlayersRoles,
+	killPlayer,
+	giveWarningToPlayer,
+	putPlayerToVoting,
+	clearVotingList
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

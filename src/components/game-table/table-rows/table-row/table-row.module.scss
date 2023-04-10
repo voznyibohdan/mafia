@@ -3,12 +3,20 @@
 	background-color: var(--primary);
 	padding: 1.2rem 1.2rem;
 
+	user-select: none;
+
 	&:first-child {
 		border-radius: .4rem 0 0 .4rem;
+		cursor: pointer;
 	}
 
 	&:last-child {
 		border-radius: 0 .4rem .4rem 0;
+	}
+
+	&.warningsTd {
+		text-align: center;
+		cursor: pointer;
 	}
 
 	&.iconContainer {

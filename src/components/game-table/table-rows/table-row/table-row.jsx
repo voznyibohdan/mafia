@@ -2,29 +2,50 @@ import React from 'react';
 import classes from './table-row.module.scss';
 
 import cn from 'classnames';
-import CloseIcon from '@mui/icons-material/Close';
-import {useDispatch} from "react-redux";
-import {killPlayer} from "../../../../store/game.js";
 
-const TableRow = ({ playerRole, number }) => {
+import CloseIcon from '@mui/icons-material/Close';
+
+import { useDispatch } from 'react-redux';
+import { killPlayer, giveWarningToPlayer, putPlayerToVoting } from '../../../../store/game.js';
+
+import Nights from './nights/nights.jsx';
+
+const TableRow = ({ player, number }) => {
 	const dispatch = useDispatch();
 
-	const handleKillPlayer = (id) => {
-		dispatch(killPlayer(id));
+	const handleKillPlayer = () => {
+		dispatch(killPlayer(player.id));
+	}
+
+	const handleGiveWarningToPlayer = () => {
+		dispatch(giveWarningToPlayer(player.id));
+	}
+
+	const handlePutPlayerToVoting = () => {
+		dispatch(putPlayerToVoting(number));
 	}
 
 	return (
 		<tr className={cn({
-			[classes.red]: playerRole.role === 'Комісар' || playerRole.role === 'Лікар',
-			[classes.black]: playerRole.role === 'Мафія' || playerRole.role === 'Дон',
-			[classes.dead]: !playerRole.isAlive,
+			[classes.red]: player.role === 'Комісар' || player.role === 'Лікар',
+			[classes.black]: player.role === 'Мафія' || player.role === 'Дон',
+			[classes.dead]: !player.isAlive,
 		})}>
-			<td className={cn(classes.td)}>{number}</td>
-			<td className={classes.td}>{playerRole.role}</td>
-			<td className={classes.td}>select</td>
+			<td
+				className={cn(classes.td)}
+				onClick={handlePutPlayerToVoting}
+			>{number}</td>
+			<td className={classes.td}>{player.role}</td>
+			<td
+				className={cn(classes.td, classes.warningsTd)}
+				onClick={handleGiveWarningToPlayer}
+			>{player.warnings}</td>
+			<td className={classes.td}>
+				<Nights id={player.id} />
+			</td>
 			<td
 				className={cn(classes.td, classes.iconContainer)}
-				onClick={() => handleKillPlayer(playerRole.id)}
+				onClick={handleKillPlayer}
 			><CloseIcon fontSize={'large'} /></td>
 		</tr>
 	);
