@@ -3,6 +3,8 @@
 	text-align: left;
 	font-weight: 500;
 
+	user-select: none;
+
 	background-color: var(--primary);
 	padding: .3rem 1.2rem;
 
@@ -12,5 +14,17 @@
 
 	&:last-child {
 		border-radius: 0 .2rem .2rem 0;
+	}
+
+	&.nightsTh {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		padding: 0;
+
+		& span, svg {
+			cursor: pointer;
+		}
 	}
 }
