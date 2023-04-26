@@ -2,6 +2,8 @@
 	font-weight: 500;
 	background-color: var(--primary);
 	padding: 1.2rem 1.2rem;
+	min-height: 5rem;
+	height: auto;
 
 	user-select: none;
 
@@ -25,6 +27,10 @@
 		justify-content: center;
 
 		cursor: pointer;
+	}
+
+	&.nightsTd {
+		padding: 0;
 	}
 }
 

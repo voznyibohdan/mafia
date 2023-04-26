@@ -40,8 +40,8 @@ const TableRow = ({ player, number }) => {
 				className={cn(classes.td, classes.warningsTd)}
 				onClick={handleGiveWarningToPlayer}
 			>{player.warnings}</td>
-			<td className={classes.td}>
-				<Nights id={player.id} />
+			<td className={cn(classes.td, classes.nightsTd)}>
+				<Nights />
 			</td>
 			<td
 				className={cn(classes.td, classes.iconContainer)}

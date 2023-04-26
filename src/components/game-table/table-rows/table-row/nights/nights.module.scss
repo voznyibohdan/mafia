@@ -1,0 +1,10 @@
+.container {
+	display: grid;
+	align-items: center;
+	grid-template-columns: repeat(17, 5rem);
+}
+
+.night {
+	height: 5rem;
+	width: 100%;
+}
