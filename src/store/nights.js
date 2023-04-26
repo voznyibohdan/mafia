@@ -5,26 +5,33 @@ const initialState = {
 	nights: [],
 }
 
-const actions = [
-
-];
-
 export const nightsSlice = createSlice({
 	name: 'nights',
 	initialState,
 	reducers: {
 		addNight: (state) => {
-			console.log(state.nights)
-
 			state.nights.push({
 				number: 1,
-				availableActions: [],
+				availableActions: [
+					'../../public/action-icons/knife.svg',
+					'../../public/action-icons/hat.svg',
+					'../../public/action-icons/police.svg',
+					'../../public/action-icons/pill.svg',
+				],
 				id: uuidv4(),
+			});
+		},
+		removeAvailableAction: (state, action) => {
+			state.nights.map(night => {
+				if (night.id === action.payload.id) {
+					night.availableActions = night.availableActions
+						.filter((availableAction) => availableAction !== action.payload.action);
+				}
 			});
 		}
 	}
 });
 
-export const { addNight } = nightsSlice.actions;
+export const { addNight, removeAvailableAction } = nightsSlice.actions;
 
 export default nightsSlice.reducer;
