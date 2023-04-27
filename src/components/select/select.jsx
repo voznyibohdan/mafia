@@ -20,8 +20,10 @@ const Select = ({ nightId, selectOptions }) => {
 	}
 
 	const handleSelectAction = (action) => {
-		setActiveOptions((state) => [...state, action]);
-		dispatch(removeAvailableAction({id: nightId, action: action}));
+		if (!activeOptions.includes(action)) {
+			setActiveOptions((state) => [...state, action]);
+			dispatch(removeAvailableAction({id: nightId, action: action}));
+		}
 	}
 
 	const renderOptions = (options) => {
